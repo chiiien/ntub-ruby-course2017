@@ -12,6 +12,13 @@
 ```ruby
 class Cat
   # 請完成實作
+  def initialize(n)
+    @n = n
+  end
+  
+  def name
+    "#{@n}"
+  end
 end
 
 kitty = Cat.new("kitty")
@@ -31,8 +38,10 @@ p profile["name"]
 ```
 
 會得到什麼結果? 為什麼?
+- 會得到nil，因為在Ruby裡要從Hash讀取key的值時，是要Symbol(eg. profile[:name])而不是用雙引號，否則不會讀到任何東西。
 
 3. (5 分) 如果要在 1 到 100 的數字當中，任意取出 5 個不重複的亂數，你會怎麼做？
+- ```puts [*1..100].sample(5) ```
 
 4. (10 分)
 ```ruby
@@ -46,6 +55,22 @@ Bank.transfer(10)
 ```
 
 上面這段程式碼執行後會發生什麼事？為什麼？如果有錯誤又該如何修正？
+- 會顯示錯誤：undefined method `transfer' for Bank:Class (NoMethodError) <br>
+  因為要使用類別方法時，要用new方法去呼叫，且要初始化(initialize)才能傳參數。<br>
+  修正結果如下：<br>
+  ```ruby
+  class Bank
+    def initialize (amount)
+      @amount = amount
+    end
+    def transfer
+      # ...
+    end
+  end
+
+  correct = Bank.new(10)
+  puts correct.transfer
+  ```
 
 5. (10 分) 請問以下方法：
 
@@ -54,6 +79,8 @@ link_to "刪除", products_path(product), method: :delete, class: "btn btn-defau
 ```
 
 `link_to` 方法共有幾個參數？為什麼？
+- 總共有<b>三個參數</b>，第一個參數為 "刪除" ，第二個為 products_path(product)，第三個為 method: :delete, class: "btn btn-default"，第三個本來
+  是一個Hash→{method: :delete, class: "btn btn-default"}，但因為Ruby的簡潔寫法，去掉了大括號，所以它們原本代表一個參數。
 
 6. (10 分) 在 Ruby 裡面常會看到冒號的寫法，例如：
 
@@ -78,6 +105,9 @@ user_profile = {name: "kk", age: 18, blood_type: :b_negative}
 ```
 
 請問，這三種寫法分別代表什麼意思呢？
+- 冒號在左邊的(:product)為Symbol(帶有名字的物件)
+- 冒號在右邊的(class:)類似路徑的概念，eg.class方法裡的btn樣式
+- 兩邊都有冒號的(blood_type: :b_negative)為namespace，eg.找尋blood_type的namespace然後回傳b_negative裡的參數
 
 ## Rails 題目 (30 分)
 
