@@ -112,8 +112,10 @@ user_profile = {name: "kk", age: 18, blood_type: :b_negative}
 ## Rails 題目 (30 分)
 
 1. (10 分) 請簡述 `bundle install` 指令的用途。
+- 會根據 Gemfile 裡頭的設定自動下載和安裝 gem ，並能幫忙解決相依問題
 
 2. (10 分) 請說明 `rails db:migrate` 這個指令的用途是什麼？
+- 執行Migration動作
 
 3. (10 分) 假設某個 Controller 的程式碼如下：
 
@@ -134,6 +136,8 @@ end
 請問：
 - 第 3 行的 `@books` 前面的那個 `@` 是什麼意思？如果把 `@` 拿掉會發生什麼事？
 - 第 7 行以及第 8 行的 `@book`，如果把 `@` 拿掉會發生什麼事？為什麼？
+  - @ 為instance variable，如果拿掉@，books就會變成local variable，index的view會讀取不到Book.All <br>
+  - update會無法執行，因為book變成local variable，因為值無法傳到view
 
 ## Git 題目 (20 分)
 
